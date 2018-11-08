@@ -22,7 +22,7 @@ def CurrentlyWorking():
     # Is today a working day for you?
     if days[currentNow.weekday()] not in WORK_DAYS:
         return False
-        
+
     # Are we outside of working hours?
     if currentNow.time() < WORK_START_TIME or currentNow.time() > WORK_END_TIME: 
         return False
@@ -55,6 +55,10 @@ def CallBluff():
         if len(itemSearcher.ItemLinks) == 0:
             continue
         for i in range(1,random.randint(MIN_ITEMS_SELECT,MAX_ITEMS_SELECT)):
+            if not CurrentlyWorking():
+                logging.warning("Out of working hours")
+                time.sleep(60)
+                break
             Getter(random.choice(itemSearcher.ItemLinks))
             ItemsBrowsed.count+=1
             ItemsBrowsed.Write()
