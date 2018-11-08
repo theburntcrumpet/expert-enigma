@@ -30,7 +30,7 @@ class SearchTermsFile(SearchTerms):
         try:
             f = open(self.filename,"r")
             self.terms = []
-            for line in f.read():
+            for line in f.readlines():
                 self.terms.append(line)
             f.close()
 

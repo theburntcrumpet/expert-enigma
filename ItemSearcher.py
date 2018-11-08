@@ -7,6 +7,7 @@ class ItemSearcher:
         self.ItemLinks = []
 
     def Search(self):
+        print(self.strItem)
         baseUrl = "https://www.amazon.co.uk/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords="
         response = Getter("{}{}".format(baseUrl,self.strItem))
         page = BeautifulSoup(response,features="lxml")
